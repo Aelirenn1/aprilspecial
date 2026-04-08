@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edison April Special</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+
+  background: url("https://i.imgur.com/ICSZOlg.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.75);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 300px;
+  max-width: 90%;
+  margin-bottom: 10px;
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  margin: 5px 0;
+}
+
+/* LAYOUT */
+.main {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.table-container {
+  flex: 2;
+  min-width: 320px;
+  padding: 10px;
+
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0,0,0,0.85);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SPALTENBREITEN + AUSRICHTUNG */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 80px;
+  text-align: center;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 150px;
+  text-align: center;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 100px;
+  text-align: center;
+}
+
+/* sorgt dafür, dass Breiten eingehalten werden */
+table {
+  table-layout: fixed;
+}
+
+/* lange Namen kürzen */
+td:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #444;
+}
+
+th {
+  background: linear-gradient(90deg, #00c3ff, #0072ff);
+}
+
+/* ROWS */
+tr {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+tr:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.01);
+}
+
+
+.top1, .top2, .top3 {
+  animation: glow 2s infinite alternate;
+}
+
+/* TOP 4 SPECIAL */
+.top1 {
+  background: linear-gradient(90deg, gold, orange);
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 0 20px gold;
+}
+
+.top2 {
+  background: linear-gradient(90deg, silver, #aaa);
+}
+
+.top3 {
+  background: linear-gradient(90deg, #cd7f32, #a0522d);
+}
+
+.top4 {
+  background: rgba(255, 215, 0, 0.2);
+}
+
+/* STANDARD ROWS */
+tr:not(.top1):not(.top2):not(.top3):not(.top4):hover {
+  background: rgba(255,255,255,0.15);
+}
+
+
+
+/* DETAILS */
+.details {
+  display: none;
+  background: rgba(255,255,255,0.05);
+  font-size: 0.9em;
+  animation: fadeIn 0.5s ease;
+}
+
+/* SIDE PANEL */
+.side {
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* QR */
+.qr img {
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.qr img {
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.qr img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* INFO */
+.info-box {
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+/* LINKS */
+a {
+  color: #00c3ff;
+  text-decoration: none;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes glow {
+  from {box-shadow: 0 0 10px rgba(255,255,255,0.2);}
+  to {box-shadow: 0 0 20px rgba(255,255,255,0.6);}
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side {
+    order: 2;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+<div class="header">
+  <!-- 🔥 HIER DEIN LOGO EINSETZEN -->
+  <img src="https://s1.directupload.eu/images/260403/nmuyxt9m.png" class="logo">
+  <h1>Edison April Special</h1>
+  <p>Auf Spieler klicken, um die wöchentlichen Punkte zu sehen</p>
+</div>
+
+<div class="main">
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- SIDE PANEL -->
+  <div class="side">
+
+    <div class="qr">
+  <a href="https://discord.gg/ZRq8sb5H" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" style="width:100px;">
+    <p>Join our Discord</p>
+  </a>
+</div>
+
+    <div class="info-box">
+      <h1>Info</h1>
+      <p>Nimm an den wöchentlichen Locals teil, um Punkte zu sammeln</p>
+      <p>Die Top 4 der regulären Season qualifizieren sich für die Playoffs</p>
+      <p>Für die Top 4 vereinbart ihr die Zeiten mit eurem Gegner, ihr habt 72 Stunden Zeit, um eure Matches abzuschließen</p>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<script>
+const url = "https://script.google.com/macros/s/AKfycbyj5sbOfmKIiVatt_i0YDdxLxHSrXG8LuIMO47CvXxXT9z1mwrIVWK01o5egj1NPf5p/exec";
+
+fetch(url)
+.then(res => res.json())
+.then(data => {
+  const tbody = document.querySelector("#table tbody");
+  let openRow = null;
+
+  data.forEach((player, index) => {
+
+    let className = "";
+    if (index === 0) className = "top1";
+    else if (index === 1) className = "top2";
+    else if (index === 2) className = "top3";
+    else if (index === 3) className = "top4";
+
+    const mainRow = document.createElement("tr");
+    mainRow.className = className;
+
+   mainRow.innerHTML = `
+  <td>
+    ${index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : ""}
+    ${player.rank}
+  </td>
+  <td>${player.name}</td>
+  <td><strong>${player.total}</strong></td>
+`;
+
+    const detailRow = document.createElement("tr");
+    detailRow.className = "details";
+
+    detailRow.innerHTML = `
+  	<td colspan="3">
+    	<div style="display:flex; justify-content:space-around;">
+      	<div>Week 1<br><strong>${player.w1}</strong></div>
+      	<div>Week 2<br><strong>${player.w2}</strong></div>
+      	<div>Week 3<br><strong>${player.w3}</strong></div>
+    </div>
+  </td>
+`;
+
+    mainRow.addEventListener("click", () => {
+  if (openRow && openRow !== detailRow) {
+    openRow.style.display = "none";
+  }
+
+  detailRow.style.display =
+    detailRow.style.display === "table-row" ? "none" : "table-row";
+
+    openRow = detailRow.style.display === "table-row" ? detailRow : null;
+    });
+
+    tbody.appendChild(mainRow);
+    tbody.appendChild(detailRow);
+  });
+})
+.catch(err => {
+  console.error(err);
+  document.body.innerHTML += "<p>Error loading data</p>";
+});
+</script>
+
+</body>
+</html>
